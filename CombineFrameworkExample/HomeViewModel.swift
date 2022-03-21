@@ -8,19 +8,19 @@
 import Foundation
 //MARK: - USINNG OBSERVABLE OBJECT
 
-//class HomeViewModel {
-//    var welcomeMessage: ObservableObject<String?> = ObservableObject(nil)
-//    func getLoggedInUser() {
-//        let user = NetworkService.shared.getLoggedInUser()
-//        self.welcomeMessage.value = "Hello, \(user.firstName) \(user.lastName)"
-//    }
-//}
-
-//MARK: - USINNG COMBINE
 class HomeViewModel {
-    @Published var welcomeMessage: String?
+    var welcomeMessage: ObservableObject<String?> = ObservableObject(nil)
     func getLoggedInUser() {
         let user = NetworkService.shared.getLoggedInUser()
-        self.welcomeMessage = "Hello, \(user.firstName) \(user.lastName)"
+        self.welcomeMessage.value = "Hello, \(user.firstName) \(user.lastName)"
     }
 }
+
+//MARK: - USINNG COMBINE
+//class HomeViewModel {
+//    @Published var welcomeMessage: String?
+//    func getLoggedInUser() {
+//        let user = NetworkService.shared.getLoggedInUser()
+//        self.welcomeMessage = "Hello, \(user.firstName) \(user.lastName)"
+//    }
+//}

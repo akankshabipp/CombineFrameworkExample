@@ -15,33 +15,33 @@ class NewViewController: UIViewController {
 
     private let viewModel = LoginViewModel()
     //Using Combine
-    private var cancellables: Set<AnyCancellable> = []
+  //  private var cancellables: Set<AnyCancellable> = []
     override func viewDidLoad() {
         super.viewDidLoad()
      setUpBinders()
       
     }
     //MARK: - USINNG OBSERVABLE OBJECT
-//    private func setUpBinders() {
-//        viewModel.error.bind {[weak self] error in
-//            if let error = error {
-//                print(error)
-//            } else {
-//                self?.goToHomePage()
-//            }
-//        }
-//    }
-    //MARK: - USINNG COMBINE
-        private func setUpBinders() {
-            viewModel.$error.sink { [weak self] error in
-                if let error = error {
-                    print(error)
-                } else {
-                    self?.goToHomePage()
-                }
-                 
-            }.store(in: &cancellables)
+    private func setUpBinders() {
+        viewModel.error.bind {[weak self] error in
+            if let error = error {
+                print(error)
+            } else {
+                self?.goToHomePage()
+            }
         }
+    }
+    //MARK: - USINNG COMBINE
+//        private func setUpBinders() {
+//            viewModel.$error.sink { [weak self] error in
+//                if let error = error {
+//                    print(error)
+//                } else {
+//                    self?.goToHomePage()
+//                }
+//
+//            }.store(in: &cancellables)
+//        }
     private func goToHomePage(){
         let controller = storyboard?.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
         present(controller, animated: true, completion: nil)
